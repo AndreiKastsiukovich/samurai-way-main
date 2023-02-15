@@ -3,6 +3,7 @@ import classes from './Post.module.css';
 
 type PropsType = {
     message:string
+    likesCount:number
 }
 
 export const Post = (props:PropsType) => {
@@ -13,6 +14,7 @@ export const Post = (props:PropsType) => {
             {props.message}
             <div>
                 <span>like</span>
+                {props.likesCount}
             </div>
 
         </div>
