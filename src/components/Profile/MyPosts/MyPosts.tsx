@@ -7,7 +7,11 @@ export const MyPosts = () => {
     let postData = [
         {id:1,message:'Hi how are you?',likesCount:2},
         {id:2,message:'My first post',likesCount:13},
+        {id:3,message:'Hi!',likesCount:21},
+        {id:4,message:'Good',likesCount:16},
     ]
+
+    let postElement = postData.map(el=> <Post message={el.message} likesCount={el.likesCount}/>)
 
     return (
         <div className={classes.postBlock}>
@@ -21,8 +25,9 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={classes.posts}>
-                <Post message={postData[0].message} likesCount={postData[0].likesCount}/>
-                <Post message={postData[0].message} likesCount={postData[1].likesCount}/>
+
+                {postElement}
+
             </div>
         </div>
     )
