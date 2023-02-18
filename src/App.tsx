@@ -3,20 +3,14 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import {DialogArrPropsType, Dialogs, MessageArrPropsType} from "./components/Dialogs/Dialogs";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {PostDataType} from "./components/Profile/MyPosts/MyPosts";
+import {RootStateType, state} from "./redux/state";
 
-type AppPropsType = {
-    postData:PostDataType[],
-    dialogs:DialogArrPropsType[],
-    messages:MessageArrPropsType[],
-}
-
-const App = (props:AppPropsType) => {
+const App : React.FC<RootStateType> = (props) => {
 
     return (
         <BrowserRouter>
@@ -26,11 +20,12 @@ const App = (props:AppPropsType) => {
                 <div className='app-wrapper-content'>
 
                     <Route path='/dialogs' render={()=><Dialogs
-                        dialogs={props.dialogs}
-                        messages={props.messages}/>}/>
+
+                        dialogs={state.dialogsPage.dialogs}
+                        messages={state.dialogsPage.messages}/>}/>
 
                     <Route path='/profile' render={()=><Profile
-                        postData={props.postData}/>}/>
+                        postData={state.profilePage.postData}/>}/>
 
                     <Route path='/news' render={()=><News/>}/>
                     <Route path='/music' render={()=><Music/>}/>
