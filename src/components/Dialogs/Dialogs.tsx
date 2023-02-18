@@ -3,28 +3,25 @@ import classes from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
 
-export const Dialogs = () => {
+export type DialogArrPropsType = {
+    id: number,
+    name: string,
+}
 
-    let dialogs = [
-        {id:1, name:'Andrey'},
-        {id:2, name:'Kirill'},
-        {id:3, name:'Dimon'},
-        {id:4, name:'Vadim'},
-        {id:5, name:'Sergey'},
-        {id:6, name:'Viktor'},
-    ]
+export type MessageArrPropsType = {
+    id: number,
+    message: string,
+}
 
-    let messages = [
-        {id:1, message:'Hi'},
-        {id:2, message:'How are you ?'},
-        {id:3, message:'Hello'},
-        {id:4, message:'Yo!'},
-        {id:5, message:'Great'},
-        {id:5, message:'Yo'},
-    ]
+export type DialogsPropsType = {
+    dialogs:DialogArrPropsType[],
+    messages:MessageArrPropsType[]
+}
 
-    let dialogsElements = dialogs.map(el => <DialogItem name={el.name} id={el.id}/>);
-    let messagesElements = messages.map(el=><Message message={el.message}/>)
+export const Dialogs = (props:DialogsPropsType) => {
+
+    let dialogsElements = props.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>);
+    let messagesElements = props.messages.map(el=><Message message={el.message}/>)
 
     return (
         <div className={classes.dialogs}>
