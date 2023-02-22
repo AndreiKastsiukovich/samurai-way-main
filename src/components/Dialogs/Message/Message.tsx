@@ -6,8 +6,30 @@ type MessagePropsType= {
     message:string
 }
 
-export const Message = (props:MessagePropsType) => {
-    return(
-        <div className={classes.dialog}>{props.message}</div>
+export const Message = (props: MessagePropsType) => {
+
+    const newMessage = React.createRef<HTMLTextAreaElement>()
+
+    const addMessage = () => {
+        alert(newMessage.current?.value)
+    }
+
+    return (
+
+
+        <div>
+            <div className={classes.dialog}>{props.message}</div>
+
+            <div>
+                <textarea ref={newMessage}></textarea>
+            </div>
+
+            <div>
+                <button onClick={addMessage}></button>
+            </div>
+
+        </div>
+
+
     )
 }

@@ -19,8 +19,7 @@ const App : React.FC<RootStateType> = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path='/dialogs' render={()=><Dialogs
-
+                    <Route path='/dialogs' render={()=> <Dialogs
                         dialogs={state.dialogsPage.dialogs}
                         messages={state.dialogsPage.messages}/>}/>
 
