@@ -21,11 +21,11 @@ export const Message = (props: MessagePropsType) => {
             <div className={classes.dialog}>{props.message}</div>
 
             <div>
-                <textarea ref={newMessage}></textarea>
+                <textarea ref={newMessage}> </textarea>
             </div>
 
             <div>
-                <button onClick={addMessage}></button>
+                <button onClick={addMessage}>Add message</button>
             </div>
 
         </div>

@@ -1,16 +1,28 @@
 import React from "react";
 import classes from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ProfilePageType, state} from "../../../redux/state";
+import {PostDataType,} from "../../../redux/state";
 
-export const MyPosts:React.FC<ProfilePageType> = (props) => {
+type MyPostsPropsType = {
+    postData:PostDataType[],
+    addNewPost:(postMessage:string)=>void
+}
 
-    let postElement = state.profilePage.postData.map(el=> <Post message={el.message} likesCount={el.likesCount}/>)
+export const MyPosts: React.FC<MyPostsPropsType> = (
+    {
+        postData,
+        addNewPost,
+        ...props
+    }) => {
+
+    let postElement = postData.map(el=> <Post message={el.message} likesCount={el.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = () => {
-        alert(newPostElement.current?.value)
+    const addPost = () => {
+        if(newPostElement.current){
+            addNewPost(newPostElement.current.value);
+        }
     }
 
     return (
@@ -21,7 +33,7 @@ export const MyPosts:React.FC<ProfilePageType> = (props) => {
                     <textarea ref={newPostElement}> </textarea>
                 </div>
                 <div>
-                    <button onClick={onAddPost}> Add post</button>
+                    <button onClick={addPost}> Add post</button>
                 </div>
             </div>
             <div className={classes.posts}>

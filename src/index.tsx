@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state} from "./redux/state";
+import {state,addNewPost} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
 
-// @ts-ignore
-ReactDOM.render(<App state={state} dialogsPage={state.dialogsPage}/>,document.getElementById('root'));
+
+ReactDOM.render(
+    <BrowserRouter>
+        <App state={state}
+             addNewPost={addNewPost}/>
+    </BrowserRouter>
+    , document.getElementById('root'));
