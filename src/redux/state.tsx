@@ -44,7 +44,7 @@ export const state: StateType = {
         dialogs: [
             {id: 1, name: 'Andrey'},
             {id: 2, name: 'Kirill'},
-            {id: 3, name: 'Dimon'},
+            {id: 3, name: 'Dmitriy'},
             {id: 4, name: 'Vadim'},
             {id: 5, name: 'Sergey'},
             {id: 6, name: 'Viktor'},
