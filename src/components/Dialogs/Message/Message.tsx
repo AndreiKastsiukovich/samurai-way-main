@@ -6,7 +6,11 @@ type MessagePropsType= {
     message:string
 }
 
-export const Message = (props: MessagePropsType) => {
+export const Message:React.FC<MessagePropsType> = (
+    {
+        message,
+        ...props
+    }) => {
 
     const newMessage = React.createRef<HTMLTextAreaElement>()
 
@@ -18,7 +22,7 @@ export const Message = (props: MessagePropsType) => {
 
 
         <div>
-            <div className={classes.dialog}>{props.message}</div>
+            <div className={classes.dialog}>{message}</div>
 
             <div>
                 <textarea ref={newMessage}> </textarea>
