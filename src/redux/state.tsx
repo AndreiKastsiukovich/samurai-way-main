@@ -34,7 +34,7 @@ export const store: StoreType = {
 
 },
     _callSubscriber () {
-        console.log('State change')
+        console.log('State change!')
     },
     addNewPost () {
         let newPost = {
