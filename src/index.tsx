@@ -12,8 +12,7 @@ const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={store.getState()}
-                 addNewPost={store.addNewPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
+                 dispatch={store.dispatch.bind(store)}
             />
         </BrowserRouter>
         , document.getElementById('root'));

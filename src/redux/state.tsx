@@ -1,5 +1,8 @@
 import React from 'react';
 
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
 export const store: StoreType = {
     _state: {
     profilePage: {
@@ -36,37 +39,62 @@ export const store: StoreType = {
     _callSubscriber () {
         console.log('State change!')
     },
-    addNewPost () {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.postData.push(newPost)
-        this._callSubscriber()
+
+    getState(){
+        return this._state
     },
     subscribe (observer) {
         this._callSubscriber = observer
     },
-    updateNewPostText (newText:string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    },
-    getState(){
-        return this._state
-    },
 
+    dispatch (action) {
+        if(action.type === 'ADD-POST'){
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.postData.push(newPost)
+            this._callSubscriber()
+
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText
+             this._callSubscriber()
+        }
+    }
 }
+
+export const addPostActionCreator = () => {
+    return {
+        type:ADD_POST
+    } as const
+}
+export const onPostChangeActionCreator = (newText:string) => {
+    return {
+        type:UPDATE_NEW_POST_TEXT,
+        newText:newText
+    } as const
+}
+
+export type AddNewPostActionType = ReturnType<typeof addPostActionCreator>
+
+export type UpdateNewPostTextActionType = ReturnType<typeof onPostChangeActionCreator >
+
+export type ActionsType = AddNewPostActionType | UpdateNewPostTextActionType
+
+
 
 export type StoreType = {
     _state:StateType,
-    addNewPost:()=>void,
-    subscribe:(observer:()=>void)=>void
-    updateNewPostText:(newText:string)=>void,
     _callSubscriber:()=>void,
-    getState:()=>StateType,
 
+    getState:()=>StateType,
+    subscribe:(observer:()=>void)=>void,
+
+    dispatch:(action:ActionsType)=>void
 }
+
+
 
 export type MessagesType = {
     id: number,
