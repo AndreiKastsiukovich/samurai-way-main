@@ -1,11 +1,31 @@
 import React from 'react';
-import {ActionsType, DialogsPageType, StateType} from "./state";
+import {ActionsType, DialogsPageType, StateType} from "./store";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
+const initialState = {
+    dialogs: [
+        {id: 1, name: 'Andrey'},
+        {id: 2, name: 'Kirill'},
+        {id: 3, name: 'Dmitriy'},
+        {id: 4, name: 'Vadim'},
+        {id: 5, name: 'Sergey'},
+        {id: 6, name: 'Viktor'},
+    ],
 
-export const dialogsReducer =  (state:DialogsPageType, action:ActionsType) => {
+    messages: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'How are you ?'},
+        {id: 3, message: 'Hello'},
+        {id: 4, message: 'Yo!'},
+        {id: 5, message: 'Great'},
+        {id: 6, message: 'Yo'},
+    ],
+    newMessageBody: ''
+};
+
+export const dialogsReducer =  (state:DialogsPageType = initialState, action:ActionsType) => {
 
     switch (action.type){
 
