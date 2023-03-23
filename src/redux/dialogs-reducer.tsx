@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionsType, DialogsPageType, StateType} from "./store";
+import {ActionsType, DialogsPageType} from "./store";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE'
@@ -25,7 +25,7 @@ const initialState = {
     newMessageBody: ''
 };
 
-export const dialogsReducer =  (state:DialogsPageType = initialState, action:ActionsType) => {
+export const dialogsReducer =  (state:DialogsPageType = initialState, action:ActionsType):DialogsPageType => {
 
     switch (action.type){
 
