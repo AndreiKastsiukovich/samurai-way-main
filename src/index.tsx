@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/store";
 import {Provider} from "react-redux";
+import {store} from "./redux/redux-store";
 
-const rerenderEntireTree = () => {
+//const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -15,10 +15,10 @@ const rerenderEntireTree = () => {
             </Provider>
         </BrowserRouter>
         , document.getElementById('root'));
-}
+//}
 
-rerenderEntireTree();
+//rerenderEntireTree();
 
-store.subscribe(rerenderEntireTree);
+//store.subscribe(rerenderEntireTree);
 
 
