@@ -1,4 +1,3 @@
-import React from 'react';
 import {ActionsType, ProfilePageType} from "./store";
 
 const ADD_POST = 'ADD-POST';

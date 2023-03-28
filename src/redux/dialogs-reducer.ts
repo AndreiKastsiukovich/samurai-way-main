@@ -1,4 +1,3 @@
-import React from 'react';
 import {ActionsType, DialogsPageType} from "./store";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
