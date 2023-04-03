@@ -14,7 +14,6 @@ export const Users = (props:UsersPropsType) => {
         ])
     }
 
-
     return (
         <div>
             {props.users.map((el)=>{
