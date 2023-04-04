@@ -2,6 +2,7 @@ import React from 'react';
 import {AddNewPostActionType, profileReducer, UpdateNewPostTextActionType} from "./profile-reducer";
 import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
 
+
 export const store:StoreType = {
     _state: {
     profilePage: {

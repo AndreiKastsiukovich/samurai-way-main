@@ -19,10 +19,10 @@ export type StateType = {
 }
 
 const initialState:StateType = {
-    users:[]
+    users:[] as UsersType[]
 }
 
-export const usersReducer = (state:StateType= initialState,action:ActionType) => {
+export const usersReducer = (state:StateType = initialState,action:ActionType):StateType => {
     switch (action.type){
         case FOLLOW:{
             return {...state,users:state.users.map((el)=>el.id === action.payload.userID ? {...el,followed:true} : el )}
@@ -31,7 +31,7 @@ export const usersReducer = (state:StateType= initialState,action:ActionType) =>
             return {...state,users: state.users.map((el)=>el.id === action.payload.userID ? {...el,followed:false} : el )}
         }
         case SET_USERS:{
-            return {...state.users,...action.payload.users}
+            return {...state,users: [...state.users,...action.payload.users]}
         }
         default:return state
     }

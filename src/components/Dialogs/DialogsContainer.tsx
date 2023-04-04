@@ -2,8 +2,9 @@ import React from 'react';
 import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {DialogsPageType, StateType} from "../../redux/store";
+import {DialogsPageType} from "../../redux/store";
 import {Dispatch} from "redux";
+import {StateType} from "../../redux/redux-store";
 
 type MapStateToPropsType = {
     dialogsPage:DialogsPageType

@@ -2,8 +2,9 @@ import React from "react";
 import {MyPosts} from "../MyPosts";
 import {addPostActionCreator, onPostChangeActionCreator} from "../../../../redux/profile-reducer";
 import {connect} from "react-redux";
-import {PostDataType, StateType} from "../../../../redux/store";
+import {PostDataType} from "../../../../redux/store";
 import {Dispatch} from "redux";
+import {StateType} from "../../../../redux/redux-store";
 
 type MapStateToProsType = {
     postData: PostDataType[],
