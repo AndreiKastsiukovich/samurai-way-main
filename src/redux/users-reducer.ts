@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 export type UsersType = {
     name:string,
@@ -22,14 +23,16 @@ export type StateType = {
     pageSize:number,
     totalUsersCount:number,
     currentPage:number
+    isFetching:boolean
 }
 
 const initialState:StateType = {
     users:[],
     error:null,
-    pageSize:10,
+    pageSize:5,
     totalUsersCount: 0,
-    currentPage:1
+    currentPage:1,
+    isFetching:false
 }
 
 export const usersReducer = (state:StateType = initialState,action:ActionType):StateType => {
@@ -49,6 +52,9 @@ export const usersReducer = (state:StateType = initialState,action:ActionType):S
         case SET_TOTAL_USERS_COUNT:{
             return {...state,totalUsersCount:action.payload.count}
         }
+        case TOGGLE_IS_FETCHING:{
+            return {...state,isFetching:action.payload.isFetching}
+        }
         default:return state
     }
 }
@@ -58,6 +64,7 @@ type ActionType = FollowACType
     | SetUsersACType
     | setCurrentPageACType
     | setTotalUsersCountACType
+    | toggleIsFetchingACType
 
 type FollowACType = ReturnType<typeof followAC>
 
@@ -110,6 +117,17 @@ export const setTotalUsersCountAC = (count:number) => {
         type:SET_TOTAL_USERS_COUNT,
         payload:{
             count
+        }
+    }as const
+}
+
+type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+
+export const toggleIsFetchingAC = (isFetching :boolean) => {
+    return{
+        type:TOGGLE_IS_FETCHING,
+        payload:{
+            isFetching
         }
     }as const
 }
