@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {
     follow,
     setCurrentPage,
@@ -33,9 +32,9 @@ type MapDispatchToProps = {
     toggleIsFetching:(isFetching:boolean)=>void
 }
 
-export type UsersContainerType =  MapStateToPropsType & MapDispatchToProps
+export type UserContainerType =  MapStateToPropsType & MapDispatchToProps
 
-export class UserContainer extends React.Component<UsersContainerType>{
+export class UserContainer extends React.Component<UserContainerType>{
 
     componentDidMount() {
         this.props.toggleIsFetching(true)

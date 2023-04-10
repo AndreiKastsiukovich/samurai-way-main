@@ -35,7 +35,7 @@ const initialState:StateType = {
     isFetching:false
 }
 
-export const usersReducer = (state:StateType = initialState,action:ActionType):StateType => {
+export const usersReducer = (state:StateType = initialState,action:ActionType):typeof state=> {
     switch (action.type){
         case FOLLOW:{
             return {...state,users:state.users.map((el)=>el.id === action.payload.userID ? {...el,followed:true} : el )}

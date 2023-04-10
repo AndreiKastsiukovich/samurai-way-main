@@ -1,9 +1,9 @@
 import React from 'react';
-import {AddNewPostActionType, profileReducer, UpdateNewPostTextActionType} from "./profile-reducer";
+import {addNewPostActionType, profileReducer, updateNewPostTextActionType} from "./profile-reducer";
 import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
 
 
-export const store:StoreType = {
+/*export const store:StoreType = {
     _state: {
     profilePage: {
         postData: [
@@ -57,7 +57,7 @@ export const store:StoreType = {
     }
 }
 
-export type ActionsType = AddNewPostActionType | UpdateNewPostTextActionType
+export type ActionsType = addNewPostActionType | updateNewPostTextActionType
     | updateNewMessageBodyActionCreator | sendMessageActionCreator
 
 export type StoreType = {
@@ -101,7 +101,7 @@ export type DialogsPageType = {
 export type StateType = {
     profilePage: ProfilePageType,
     dialogsPage: DialogsPageType,
-}
+}*/
 
 
 
