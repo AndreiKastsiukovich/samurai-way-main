@@ -17,23 +17,18 @@ export const usersAPI = {
             })
     },
     followUsers(id: number) {
-        return instance.delete(`follow/${id}`)
-            .then(response => {
-                return response.data
-            })
-    },
-    unfollowUsers(id: number) {
         return instance.post(`follow/${id}`)
             .then(response => {
                 return response.data
             })
     },
-    setUser(userId:string){
-        return axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
+    unfollowUsers(id: number) {
+        return instance.delete(`follow/${id}`)
             .then(response => {
                 return response.data
             })
-    }
+    },
+
 }
 
 
