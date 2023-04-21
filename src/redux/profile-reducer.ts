@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -51,7 +54,7 @@ const initialState = {
     profile: null
 };
 
-export  const profileReducer =  (state:any = initialState, action:ActionType):any => {
+export  const profileReducer =  (state = initialState, action:ActionType):any=> {
     switch (action.type){
 
         case ADD_POST: {
@@ -103,4 +106,13 @@ export const setUserProfile = (profile:ProfileType) => {
             profile
         }
     }as const
+}
+
+export const getUserProfileThunk = (userId:string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data))
+            })
+    }
 }

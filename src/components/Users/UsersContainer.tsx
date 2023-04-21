@@ -1,11 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    follow, followThunk, getUsers,
-    toggleIsFollowingProgress,
-    unfollow, unfollowThunk,
-    UsersType
-} from "../../redux/users-reducer";
+import {followThunk, getUsers, unfollowThunk, UsersType} from "../../redux/users-reducer";
 import {StateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
