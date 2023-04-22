@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
 
 import {DialogsContainerType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 type DialogsPropsType = DialogsContainerType
 
@@ -23,6 +24,8 @@ export const Dialogs = (props:DialogsPropsType) => {
     const onSendMessageClick = () => {
         props.sendMessage()
     }
+
+    if (!props.isAuth) return <Redirect to='/login'/>
 
     return (
         <div className={classes.dialogs}>

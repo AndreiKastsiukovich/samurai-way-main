@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-    DialogsPageType,
-    sendMessageActionCreator,
-    updateNewMessageBodyActionCreator
-} from "../../redux/dialogs-reducer";
+import {DialogsPageType, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {StateType} from "../../redux/redux-store";
 
 type MapStateToPropsType = {
-    dialogsPage:DialogsPageType
+    dialogsPage:DialogsPageType,
+    isAuth:boolean
 }
 
 type MapDispatchToPropsType = {
@@ -22,7 +19,8 @@ export type DialogsContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state:StateType):MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth:state.auth.isAuth
     }
 }
 
