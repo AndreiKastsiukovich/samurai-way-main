@@ -4,6 +4,7 @@ import {followThunk, getUsers, unfollowThunk, UsersType} from "../../redux/users
 import {StateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapStateToPropsType = {
     users: UsersType[]
@@ -67,32 +68,9 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
     }
 }
 
-/*const mapDispatchToProps = (dispatch:Dispatch):MapDispatchToProps => {
-    return {
-        follow: (userId:number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId:number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers:(users:UsersType[])=>{
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage:(pageNumber:number)=>{
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount:(totalCount:number)=>{
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching:(isFetching:boolean)=>{
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}*/
-
-export default connect(mapStateToProps,
+export default withAuthRedirect(connect(mapStateToProps,
     {
         getUsers,
         followThunk,
         unfollowThunk
-    })(UserContainer)
+    })(UserContainer))

@@ -4,37 +4,35 @@ import {connect} from "react-redux";
 import {StateType} from "../../../redux/redux-store";
 import {getUserProfileThunk, ProfileType,} from "../../../redux/profile-reducer";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 type PathParamsType = {
-    userId:string
+    userId: string
 }
 
 type RouterPropsType = RouteComponentProps<PathParamsType>
 
 type MapStateToPropsType = {
-    profile:ProfileType,
-    isAuth:boolean
+    profile: ProfileType,
 }
 
 type MapDispatchToProps = {
-    getUserProfileThunk:(userId:string)=>void
+    getUserProfileThunk: (userId: string) => void
 }
 
 type ProfileContainerType = MapStateToPropsType & MapDispatchToProps & RouterPropsType
 
-class ProfileContainer extends React.Component<ProfileContainerType>{
+class ProfileContainer extends React.Component<ProfileContainerType> {
 
     componentDidMount() {
-       let userId = this.props.match.params.userId;
-       if (!userId) {
-           userId = '2'
-       }
-       this.props.getUserProfileThunk(userId)
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = '2'
+        }
+        this.props.getUserProfileThunk(userId)
     }
 
     render() {
-
-        if(!this.props.isAuth) return <Redirect to='/login'/>
 
         return (
 
@@ -46,13 +44,12 @@ class ProfileContainer extends React.Component<ProfileContainerType>{
 
 }
 
-const mapStateToProps = (state:StateType):MapStateToPropsType => {
-    return{
-        profile:state.profilePage.profile,
-        isAuth:state.auth.isAuth,
+const mapStateToProps = (state: StateType): MapStateToPropsType => {
+    return {
+        profile: state.profilePage.profile,
     }
 }
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps,{getUserProfileThunk})(WithUrlDataContainerComponent)
+export default withAuthRedirect(connect(mapStateToProps, {getUserProfileThunk})(WithUrlDataContainerComponent))
