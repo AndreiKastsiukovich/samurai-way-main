@@ -1,10 +1,10 @@
 import React from 'react';
-import {Profile} from "../Profile";
+import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {StateType} from "../../../redux/redux-store";
-import {getUserProfileThunk, ProfileType,} from "../../../redux/profile-reducer";
+import {StateType} from "../../redux/redux-store";
+import {getUserProfileThunk, ProfileType,} from "../../redux/profile-reducer";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type PathParamsType = {
@@ -55,7 +55,7 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfileThunk}),
         withRouter,
-        withAuthRedirect,
+       // withAuthRedirect,
     )(ProfileContainer)
 
 
