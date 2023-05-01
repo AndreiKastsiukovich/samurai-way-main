@@ -34,7 +34,6 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
             userId = '28522'
         }
         this.props.getUserProfileThunk(userId)
-
         this.props.getUserStatusThunk(userId)
     }
 
