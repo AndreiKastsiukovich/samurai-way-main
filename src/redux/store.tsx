@@ -1,6 +1,6 @@
 import React from 'react';
-import {addNewPostActionType, profileReducer, updateNewPostTextActionType} from "./profile-reducer";
-import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
+import {addNewPostActionType, profileReducer,} from "./profile-reducer";
+import {dialogsReducer, sendMessageActionCreator,} from "./dialogs-reducer";
 
 
 /*export const store:StoreType = {
