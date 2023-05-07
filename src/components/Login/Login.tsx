@@ -2,9 +2,11 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validator";
+import {connect} from "react-redux";
+import {loginThunk} from "../../redux/auth-reducer";
 
 type FormDataType = {
-    login:string
+    email:string
     password:string
     rememberMe:boolean
 }
@@ -14,25 +16,27 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <form onSubmit={props.handleSubmit}>
                 <div>
                     <Field
-                        validate={[required]}
-                        placeholder={'Login'}
-                        name={'login'}
                         component={Input}
-
+                        validate={[required]}
+                        placeholder={'Email'}
+                        name={'email'}
                     />
                 </div>
                 <div>
                     <Field
+                        component={Input}
                         validate={[required]}
                         placeholder={'Password'}
+                        type='password'
                         name={'password'}
-                        component={Input}/>
+                        />
                 </div>
                 <div>
                     <Field
-                        type={'checkbox'}
+                        component={Input}
                         name={'rememberMe'}
-                        component={Input}/>
+                        type = 'checkbox'
+                        />
                     remember me
                 </div>
                 <div>
@@ -44,12 +48,20 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form:'login'})(LoginForm)
 
+
+type LoginPropsType = {
+    loginThunk:(email:string,password:string,rememberMe:boolean)=>void
+}
+
 export const Login = () => {
     const onSubmit = (formData:FormDataType) => {
-        console.log(formData)
+        loginThunk(formData.email,formData.password,formData.rememberMe)
     }
+
     return <div>
         <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
+
+export default connect (null,{loginThunk}) (Login)

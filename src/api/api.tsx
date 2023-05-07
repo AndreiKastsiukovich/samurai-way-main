@@ -27,10 +27,7 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
-    },
-    getProfile(id: string){
-        return profileAPI.getProfile(id)
-    },
+    }
 }
 
 
@@ -46,13 +43,21 @@ export const profileAPI = {
     },
 }
 
-
 export const authAPI = {
     me(){
-        return instance.get('auth/me',{
-        })
+        return instance.get('auth/me')
+    },
+    loginPost(email:string,password:string,rememberMe:boolean = false){
+        return instance.post<ResponseType<{userId:number}>>('auth/login',{email,password,rememberMe})
+    },
+    loginDelete(){
+        return instance.delete<ResponseType<{}>>('auth/login')
     }
 }
 
 
-
+type ResponseType<T> = {
+    resultCode: number
+    messages: string[]
+    data: T
+}
