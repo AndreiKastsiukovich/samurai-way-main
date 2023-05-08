@@ -10,6 +10,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import UserContainer from "./components/Users/UsersContainer";
 import {Login} from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 
 
 
@@ -34,7 +35,7 @@ const App = () => {
 
                 <Route path='/settings' render={() => <Settings/>}/>
 
-                <Route path='/login' render={()=><Login/>}/>
+                <Route path='/login' render={()=><LoginContainer/>}/>
             </div>
         </div>
     )
