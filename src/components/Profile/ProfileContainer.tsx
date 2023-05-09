@@ -14,7 +14,9 @@ type RouterPropsType = RouteComponentProps<PathParamsType>
 
 type MapStateToPropsType = {
     profile: ProfileType,
-    status:string
+    status:string,
+    authorizedUserId:null|number,
+    isAuth:boolean
 }
 
 type MapDispatchToProps = {
@@ -56,7 +58,10 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId:state.auth.userId,
+        isAuth: state.auth.isAuth
+
     }
 }
 

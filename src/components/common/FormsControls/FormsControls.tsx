@@ -26,6 +26,6 @@ export const Input:React.FC<WrappedFieldProps> = (props) => {
 
     const {input,meta,children,...restProps} = props
 
-    return <FormControl {...props}> <textarea {...input} {...restProps}/></FormControl>
+    return <FormControl {...props}> <input {...input} {...restProps}/></FormControl>
 
 }

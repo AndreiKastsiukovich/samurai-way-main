@@ -2,6 +2,7 @@ import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {StateType} from "./redux-store";
 import {ThunkAction} from "redux-thunk";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -22,7 +23,7 @@ const initialState:DataType = {
 export const authReducer = (state = initialState,action:ActionType):typeof state=> {
     switch (action.type){
         case SET_USER_DATA:{
-            return {...state,...action.payload,isAuth:true}
+            return {...state,...action.payload}
         }
 
         default:return state
@@ -55,11 +56,14 @@ export const getUserDataThunk = ():ThunkType => {
 }
 
 export const loginThunk = (email:string,password:string,rememberMe:boolean):ThunkType => {
-    return (dispatch,getState) => {
+    return (dispatch:any,getState) => {
         authAPI.loginPost(email,password,rememberMe)
             .then(response => {
                 if(response.data.resultCode === 0){
                     dispatch(getUserDataThunk())
+                } else {
+                   let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+                    dispatch(stopSubmit('login',{_error:message}))
                 }
             });
     }

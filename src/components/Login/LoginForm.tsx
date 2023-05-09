@@ -1,21 +1,21 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {Input, Textarea} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validator";
-
+import style from "../common/FormsControls/FormsControl.module.css"
 
 export type FormDataType = {
-    email:string
-    password:string
-    rememberMe:boolean
+    email: string
+    password: string
+    rememberMe: boolean
 }
 
-const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    component={Input}
+                    component={Textarea}
                     validate={[required]}
                     placeholder={'Email'}
                     name={'email'}
@@ -23,7 +23,7 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
             </div>
             <div>
                 <Field
-                    component={Input}
+                    component={Textarea}
                     validate={[required]}
                     placeholder={'Password'}
                     type='password'
@@ -34,10 +34,15 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field
                     component={Input}
                     name={'rememberMe'}
-                    type = 'checkbox'
+                    type='checkbox'
                 />
                 remember me
             </div>
+            {props.error &&
+                <div className={style.formSummeryError}>
+                    {props.error}
+                </div>}
+
             <div>
                 <button>Login</button>
             </div>
@@ -45,4 +50,4 @@ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = (props) => {
     );
 }
 
-export const LoginReduxForm = reduxForm<FormDataType>({form:'login'})(LoginForm)
+export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
