@@ -27,7 +27,7 @@ type MapDispatchToProps = {
 
 type ProfileContainerType = MapStateToPropsType & MapDispatchToProps & RouterPropsType
 
-class ProfileContainer extends React.Component<ProfileContainerType> {
+class ProfileContainer extends React.Component< ProfileContainerType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;

@@ -70,4 +70,4 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-        {getUsers, followThunk, unfollowThunk}), withAuthRedirect,)(UserContainer)
+        {getUsers, followThunk, unfollowThunk}))(UserContainer)

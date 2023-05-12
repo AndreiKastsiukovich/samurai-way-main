@@ -1,4 +1,3 @@
-import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {StateType} from "./redux-store";
 import {ThunkAction} from "redux-thunk";
@@ -45,7 +44,7 @@ export type ThunkType = ThunkAction<void, StateType, unknown, ActionType>
 
 export const getUserDataThunk = ():ThunkType => {
     return (dispatch,getState) => {
-        authAPI.me()
+       return authAPI.me()
             .then(response => {
                 if(response.data.resultCode === 0){
                     let { id, login, email} = response.data.data
