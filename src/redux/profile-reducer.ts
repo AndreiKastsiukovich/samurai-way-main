@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
+import {ActionType} from "./redux-store";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -54,7 +56,7 @@ const initialState = {
     status: ''
 };
 
-export const profileReducer = (state = initialState, action: ActionType): any => {
+export const profileReducer = (state = initialState, action: ProfileActionType): any => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {id: 5, message: action.newPostText, likesCount: 0}
@@ -72,7 +74,7 @@ export const profileReducer = (state = initialState, action: ActionType): any =>
 
 }
 
-type ActionType = addNewPostActionType
+export type ProfileActionType = addNewPostActionType
     | setUserProfileType
     | setStatusType
 
@@ -106,9 +108,10 @@ export const setStatus = (status: string) => {
         }
     } as const
 }
+export type ThunkType = ThunkAction<void, StateType, unknown, ActionType>
 
-export const getUserProfileThunk = (userId: string) => {
-    return (dispatch: Dispatch) => {
+export const getUserProfileThunk = (userId: string):ThunkType => {
+    return (dispatch) => {
         profileAPI.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data))
@@ -116,7 +119,7 @@ export const getUserProfileThunk = (userId: string) => {
     }
 }
 
-export const getUserStatusThunk = (userId: string) => {
+export const getUserStatusThunk = (userId: string):ThunkType => {
     return (dispatch: Dispatch) => {
         profileAPI.getStatus(userId)
             .then(response => {
@@ -126,7 +129,7 @@ export const getUserStatusThunk = (userId: string) => {
     }
 }
 
-export const updateStatusThunk = (newStatus: string) => {
+export const updateStatusThunk = (newStatus: string):ThunkType => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(newStatus)
             .then(response => {

@@ -35,7 +35,7 @@ const initialState:DialogsPageType = {
     ],
 };
 
-export const dialogsReducer =  (state:DialogsPageType = initialState, action:ActionType):DialogsPageType => {
+export const dialogsReducer =  (state:DialogsPageType = initialState, action:DialogActionType):DialogsPageType => {
 
 
     switch (action.type){
@@ -50,7 +50,7 @@ export const dialogsReducer =  (state:DialogsPageType = initialState, action:Act
 
 }
 
-export type ActionType = sendMessageActionCreator
+export type DialogActionType = sendMessageActionCreator
 
 export type sendMessageActionCreator = ReturnType<typeof sendMessageActionCreator>
 

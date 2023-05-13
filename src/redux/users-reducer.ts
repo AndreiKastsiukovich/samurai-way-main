@@ -42,7 +42,7 @@ const initialState: StateType = {
 
 }
 
-export const usersReducer = (state: StateType = initialState, action: ActionType): typeof state => {
+export const usersReducer = (state: StateType = initialState, action: UserActionType): typeof state => {
     switch (action.type) {
         case FOLLOW: {
             return {
@@ -81,7 +81,7 @@ export const usersReducer = (state: StateType = initialState, action: ActionType
     }
 }
 
-type ActionType = FollowACType
+export type UserActionType = FollowACType
     | UnfollowACType
     | SetUsersACType
     | setCurrentPageACType

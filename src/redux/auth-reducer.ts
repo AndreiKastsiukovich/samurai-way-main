@@ -19,7 +19,7 @@ const initialState:DataType = {
     isAuth: false
 }
 
-export const authReducer = (state = initialState,action:ActionType):typeof state=> {
+export const authReducer = (state = initialState,action:AuthActionType):typeof state=> {
     switch (action.type){
         case SET_USER_DATA:{
             return {...state,...action.payload}
@@ -29,7 +29,7 @@ export const authReducer = (state = initialState,action:ActionType):typeof state
     }
 }
 
-type ActionType = FollowACType
+export type AuthActionType = FollowACType
 
 type FollowACType = ReturnType<typeof setAuthUserData>
 
@@ -40,10 +40,9 @@ export const setAuthUserData = ( userId: null|number, login: null|string, email:
     }as const
 }
 
-export type ThunkType = ThunkAction<void, StateType, unknown, ActionType>
+export type ThunkType = ThunkAction<void, StateType, unknown, AuthActionType>
 
-export const getUserDataThunk = ():ThunkType => {
-    return (dispatch,getState) => {
+export const getUserDataThunk = ():ThunkType => (dispatch,getState) => {
        return authAPI.me()
             .then(response => {
                 if(response.data.resultCode === 0){
@@ -52,10 +51,10 @@ export const getUserDataThunk = ():ThunkType => {
                 }
             });
     }
-}
 
-export const loginThunk = (email:string,password:string,rememberMe:boolean):ThunkType => {
-    return (dispatch:any,getState) => {
+
+
+export const loginThunk = (email:string,password:string,rememberMe:boolean):ThunkType => (dispatch:any,getState) => {
         authAPI.loginPost(email,password,rememberMe)
             .then(response => {
                 if(response.data.resultCode === 0){
@@ -66,7 +65,7 @@ export const loginThunk = (email:string,password:string,rememberMe:boolean):Thun
                 }
             });
     }
-}
+
 
 export const logoutThunk = ():ThunkType => {
         return (dispatch,getState) => {
