@@ -17,13 +17,15 @@ const reducers = combineReducers({
     form: formReducer,
 })
 
+export const store = createStore(reducers, applyMiddleware(thunk));
+
+export type StateType = ReturnType<typeof store.getState>
+
+
+
+
 export type ActionType = UserActionType
     | AuthActionType
     | DialogActionType
     | ProfileActionType
     | AppActionType
-
-
-export const store = createStore(reducers, applyMiddleware(thunk));
-
-export type StateType = ReturnType<typeof store.getState>
