@@ -72,4 +72,3 @@ export default compose<React.ComponentType>(
     )(ProfileContainer)
 
 
-//export default withAuthRedirect(connect(mapStateToProps, {getUserProfileThunk})(WithUrlDataContainerComponent))
